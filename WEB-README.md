@@ -31,3 +31,9 @@ The browser contacts Wikimedia and the Steam image CDN. Favorites use localStora
 Run `node tests/web-smoke.cjs` and `node --check app.js`. Smoke tests use a mocked DOM and network and cover catalog uniqueness, favorites, context switching, search scoping and source failures. They do not prove browser layout or live source availability.
 
 The existing Android project remains as legacy source and is not required by the web app. GitHub Pages publishes the static files from main.
+
+## Banner refresh
+
+Larger cinematic banners, responsive typography and genre typography variations. Diablo II uses Resurrected promotional artwork from Nintendo's official store, with an Xbox Wire image fallback; it no longer depends on the Wikipedia API for its cover. Steam heroes try library artwork, then the smaller catalog image. Covers appear only after loading successfully. Decorative themed backgrounds remain when remote artwork is blocked. Wikipedia title redirects are resolved when assigning catalog images. Static asset URLs are versioned to refresh older browser caches.
+
+Image loading and fallback tests use simulated events. Live browser visual verification was unavailable in the build environment.

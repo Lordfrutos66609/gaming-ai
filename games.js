@@ -820,3 +820,9 @@ const GAMES = [
     "accent": "#dd9cc6"
   }
 ];
+
+// Direct official-store artwork avoids a runtime encyclopedia lookup for Diablo II.
+GAMES[0].art='https://assets.nintendo.com/image/upload/q_auto:good/f_auto,w_1600/store/software/switch/70010000038819/353b407a48c000cc6fce107d5e0295917a97adc1c79f16dbb58a1740f2648a01';
+GAMES[0].artSource='https://www.nintendo.com/pt-br/store/products/diablo-ii-resurrected-switch/';
+
+GAMES[0].artFallback='https://pub-f354ec240bea480db7320bd0e29d972e.r2.dev/sites/2/2021/09/Diablo2_HERO.jpg';
