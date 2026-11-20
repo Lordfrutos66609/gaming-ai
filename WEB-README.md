@@ -1,17 +1,33 @@
-# Lootwise web reader
+# Game Weise
 
-The published GitHub Pages app now reads source material inside the website. There is no AI, API key, user account, analytics, or persistent app storage.
+Open https://lordfrutos66609.github.io/gaming-ai/ on a phone or desktop. No account, API key or installation required.
 
-## Features
-- Searches English Wikipedia and Wikibooks concurrently, eight results per source per page.
-- Source filters, independent source errors, pagination, safe text snippets.
-- In-app game article and guide chapter reader with headings, tables, lists, optional image, source revision, attribution and related article navigation.
-- Timeouts, cancellation and request ordering prevent stale replies replacing newer searches.
-- Remote HTML is parsed into an inert document and reconstructed as plain text elements. It is never inserted as executable HTML.
+## Flow
 
-## Limits
-This is a two-source reader, not a general search engine or a verified gaming database. Many exact items, recipes, builds and patches are absent. Search uses source keyword matching rather than natural-language question answering. Images and timestamps are optional; article reading works without them. Long articles and tables are visibly shortened. External sources can block or fail requests. The browser makes live requests directly to Wikimedia; successful mocked tests do not prove live connectivity.
+Choose a game → Guide / Find help / Watch. The 101-game catalog includes Diablo II and a curated selection of popular games across platforms, not a measured global ranking. Search accepts common aliases. Stars save favorites in this browser only. No chat history or search history is saved by the app.
 
-Deploy main / root in GitHub Pages. Files: index.html, app.css, app.js. No build dependencies. The old Android source remains separate and its workflow is manual.
+Game selection changes artwork, accent color, guide chapters and search context. Steam catalog artwork comes from the Steam CDN; other covers come from Wikipedia when available. Missing artwork falls back to initials. Artwork remains the property of its respective owners; source links are provided on game pages.
 
-Source API documentation: https://www.mediawiki.org/wiki/API:Cross-site_requests
+## Guides and help
+
+Diablo II has an original eight-section starter guide. Other games have genre-based starter playbooks, explicitly labeled as general strategy. The app automatically retrieves available Wikipedia references and Wikibooks chapters for the selected game. These are not generated, comprehensive walkthroughs for every game. Source coverage varies.
+
+Find help searches the starter guide and the selected game's Wikipedia/Wikibooks source context, with a few shorthand expansions. It does not search the entire web. Source content opens inside the app, with headings, tables and source attribution. No AI inference is used. Source errors are shown separately from zero results. A source's revision date is not the game's patch date.
+
+Watch includes reviewed creator picks for Diablo II, Minecraft, Elden Ring and Path of Exile, with supporting links. Other games have YouTube discovery links, clearly distinguished from reviewed recommendations. YouTube opens externally.
+
+## Files
+
+- index.html: layout and content-security policy
+- app.css: responsive catalog, theme and reader styles
+- games.js: curated game metadata
+- guides.js: original playbooks and creator references
+- app.js: favorites, source retrieval, context search and article reader
+
+The browser contacts Wikimedia and the Steam image CDN. Favorites use localStorage and degrade to session-only behavior when storage is unavailable. Sources are rendered as text and reconstructed elements, not inserted as executable HTML.
+
+## Checks
+
+Run `node tests/web-smoke.cjs` and `node --check app.js`. Smoke tests use a mocked DOM and network and cover catalog uniqueness, favorites, context switching, search scoping and source failures. They do not prove browser layout or live source availability.
+
+The existing Android project remains as legacy source and is not required by the web app. GitHub Pages publishes the static files from main.
